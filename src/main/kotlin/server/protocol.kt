@@ -21,7 +21,7 @@ class Request (input: InputStream)
     }
 }
 
-class Response(private val output: OutputStream)
+class Response(val output: OutputStream)
 {
     val body = StringBuilder()
     fun appende(text: String)
@@ -35,6 +35,7 @@ class Response(private val output: OutputStream)
             Content-Type: text/html; charset=UTF-8
             Content-Length: ${body.length}
             Connection: close
+            
         """.trimIndent()
         val writer = output.bufferedWriter()
         writer.append(head)

@@ -1,4 +1,5 @@
-import kotlinx.coroutines.GlobalScope
+package thread
+
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking

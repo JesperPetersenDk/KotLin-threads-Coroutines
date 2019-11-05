@@ -1,7 +1,7 @@
-
+package thread
 class Path<T>(
     val first: T,
-    val rest: Path<T> ?
+    val rest: Path<T>?
     ) : Iterable<T> {
 
 

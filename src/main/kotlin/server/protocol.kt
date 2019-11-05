@@ -3,6 +3,7 @@ package server
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
 import java.io.OutputStream
+import java.lang.StringBuilder
 
 enum class Method {GET, POST, PUT, DELETE}
 
@@ -20,32 +21,32 @@ class Request (input: InputStream)
     }
 }
 
-class Response(output: OutputStream)
+class Response(private val output: OutputStream)
 {
+    val body = StringBuilder()
     fun appende(text: String)
     {
-        TODO("Implement")
+        body.append(text)
     }
     fun send()
     {
-        TODO("SEND")
+        val head = """
+            HTTP/1.1 200 OK
+            Content-Type: text/html; charset=UTF-8
+            Content-Length: ${body.length}
+            Connection: close
+        """.trimIndent()
+        val writer = output.bufferedWriter()
+        writer.append(head)
+        writer.newLine()
+        writer.append(body)
+        //writer.flush()
+        writer.close()
     }
 }
-
+/*
 fun main() {
     var output = ByteArrayOutputStream(1024)
     val writer = output.bufferedWriter()
-
-    
-
 }
-
-fun main() {
-    val requestText = """
-        GET /resuource HTTP/1.1
-    """.trimIndent()
-
-    val bytes = requestText.toByteArray().inputStream()
-    val bin = bytes.bufferedReader()
-    println(bin.readLine())
-}
+ */

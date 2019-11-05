@@ -1,5 +1,6 @@
 package server
 
+import java.io.ByteArrayOutputStream
 import java.io.InputStream
 import java.io.OutputStream
 
@@ -19,6 +20,25 @@ class Request (input: InputStream)
     }
 }
 
+class Response(output: OutputStream)
+{
+    fun appende(text: String)
+    {
+        TODO("Implement")
+    }
+    fun send()
+    {
+        TODO("SEND")
+    }
+}
+
+fun main() {
+    var output = ByteArrayOutputStream(1024)
+    val writer = output.bufferedWriter()
+
+    
+
+}
 
 fun main() {
     val requestText = """
